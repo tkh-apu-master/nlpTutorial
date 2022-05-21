@@ -143,18 +143,18 @@ if __name__ == '__main__':
     # array = regexQuestionOne('2009-12-31') # --> ['2009', '12', '31'] -> [2009, 12, 31]
     # print(array)
 
-    # matches = regexQuestionTwo()
-    # print(matches)
+    matches = regexQuestionTwo()
+    print(matches)
 
-    # text = regexQuestionThird('hacker')
-    # print(text)
-    # text2 = regexQuestionThird('hate')
-    # print(text2)
-    # text3 = regexQuestionThird('sweet')
-    # print(text3)
-    # text4 = regexQuestionThird('...')
-    # print(text4)
+    text = regexQuestionThird('hacker')
+    print(text)
+    text2 = regexQuestionThird('hate')
+    print(text2)
+    text3 = regexQuestionThird('sweet')
+    print(text3)
+    text4 = regexQuestionThird('...')
+    print(text4)
 
-    # answer = edit_distance("execution", "intention")
-    # print(answer)
+    answer = edit_distance("execution", "intention")
+    print(answer)
 
