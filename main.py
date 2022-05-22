@@ -33,23 +33,6 @@ def edit_distance(first, second):
             matrix[i][j] = min(left_side + 1, bottom_side + 1, diagonal_side + cost)
 
     print('matrix AFTER: ', matrix)
-    # for i in range(m):
-    #     for j in range(n):
-    #         # if i == 0:
-    #         #     matrix[i][j] = j
-    #         # elif j == 0:
-    #         #     matrix[i][j] = i
-    #         if target[i - 1] == source[j - 1]:  # Similar
-    #             matrix[i][j] = matrix[i - 1][j - 1]
-    #         else:
-    #             cost = 0
-    #             if target[i - 1] != source[j - 1]:  # Not similar
-    #                 cost = 2
-    #                 # move left + 1, move up + 1, diagonally + 2
-    #             move_left = matrix[i][j - 1] + 1
-    #             move_up = matrix[i - 1][j] + 1
-    #             move_diagonally = matrix[i - 1][j - 1] + cost
-    #             matrix[i][j] = min(move_left, move_up, move_diagonally)
 
     response = matrix[n - 1][m - 1]
 
