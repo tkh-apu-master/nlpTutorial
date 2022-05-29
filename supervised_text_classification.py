@@ -222,6 +222,7 @@ def text_classification_two():
 
 
 '''
+Exercises
 1. Use any features you can think to build the best name gender classifier you can.
 Begin by splitting the Names Corpus into three subsets: 500 words for the test set, 500 words for the dev-test set,
 and the remaining 6900 words for the training set.
