@@ -7,7 +7,7 @@ second = 'intention'
 cost = 2
 
 
-def edit_distance(first, second):
+def edit_distance():
     n = len(first)  # column
     m = len(second)  # row
 
@@ -36,7 +36,7 @@ def edit_distance(first, second):
 
 
 # https://docs.google.com/document/d/1GbR6HftTPwJ5YhdjCkQWWjyvpq6cCoz7wf0f7dTsP30/edit
-def backtrace(matrix, first, second):
+def backtrace(matrix):
     # print('matrix: ', matrix)
     backtrack = []
 
@@ -179,7 +179,7 @@ if __name__ == '__main__':
     text4 = regex_question_third('...')
     print(text4)
 
-    med, matrix2 = edit_distance(first, second)
+    med, matrix2 = edit_distance()
     print(med)
-    result = backtrace(matrix2, first, second)
+    result = backtrace(matrix2)
     print(result)
