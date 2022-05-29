@@ -1,5 +1,9 @@
 import re
 
+# Minimal Edit Distance (MED) is a measure of the number of operations required to transform one string into another.
+# Initialization of MED
+first = 'execution'
+second = 'intention'
 cost = 2
 
 
@@ -78,6 +82,8 @@ def backtrace(matrix, first, second):
 
     return backtrack
 
+
+# End of MED implementation**************************************************************************************
 
 # NLP Homework
 # Regex
@@ -158,23 +164,21 @@ def regex_question_third(text):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # array = regexQuestionOne('2009-12-31') # --> ['2009', '12', '31'] -> [2009, 12, 31]
-    # print(array)
+    array = regex_question_one('2009-12-31') # --> ['2009', '12', '31'] -> [2009, 12, 31]
+    print(array)
 
-    # matches = regexQuestionTwo()
-    # print(matches)
-    #
-    # text = regexQuestionThird('hacker')
-    # print(text)
-    # text2 = regexQuestionThird('hate')
-    # print(text2)
-    # text3 = regexQuestionThird('sweet')
-    # print(text3)
-    # text4 = regexQuestionThird('...')
-    # print(text4)
+    matches = regex_question_two()
+    print(matches)
 
-    first = 'execution'
-    second = 'intention'
+    text = regex_question_third('hacker')
+    print(text)
+    text2 = regex_question_third('hate')
+    print(text2)
+    text3 = regex_question_third('sweet')
+    print(text3)
+    text4 = regex_question_third('...')
+    print(text4)
+
     med, matrix2 = edit_distance(first, second)
     print(med)
     result = backtrace(matrix2, first, second)
