@@ -1,5 +1,7 @@
 import re
 
+cost = 2
+
 
 def edit_distance(first, second):
     n = len(first)  # column
@@ -14,85 +16,65 @@ def edit_distance(first, second):
             # column i row j
 
             if first[i - 1] == second[j - 1]:  # Similar
-                cost = 0
+                cost2 = 0
             else:
-                cost = 2
+                cost2 = cost
 
             left_side = matrix[i - 1][j]
             bottom_side = matrix[i][j - 1]
             diagonal_side = matrix[i - 1][j - 1]
 
-            matrix[i][j] = min(left_side + 1, bottom_side + 1, diagonal_side + cost)
-
-            # if matrix[i][j] == left_side:
-            #     backtrack.append('d')
-            # elif matrix[i][j] == bottom_side:
-            #     backtrack.append('i')
-            # elif matrix[i][j] == (diagonal_side + cost):
-            #     backtrack.append('s')
-            # else:
-            #     backtrack.append('x')
+            matrix[i][j] = min(left_side + 1, bottom_side + 1, diagonal_side + cost2)
 
     response = matrix[n - 1][m - 1]
 
     return response, matrix
 
 
-# TODO: Backtrack
 # https://docs.google.com/document/d/1GbR6HftTPwJ5YhdjCkQWWjyvpq6cCoz7wf0f7dTsP30/edit
-def backtrace(matrix):
-    print('matrix: ', matrix)
+def backtrace(matrix, first, second):
+    # print('matrix: ', matrix)
     backtrack = []
 
     # pointers. But array index starts at 0.
     x = len(matrix) - 1
     y = len(matrix[0]) - 1
-    print('x: ', x)
-    print('y: ', y)
-    print('matrix[x][y]: ', matrix[x][y])
 
     for i in reversed(range(len(matrix) + 1)):
-        print('index: ', i)
+        # print('index: ', i)
         current = matrix[x][y]
         left_side = matrix[x - 1][y]
         bottom_side = matrix[x][y - 1]
         diagonal_side = matrix[x - 1][y - 1]
-        print('current: ', current)
-        print('left_side: ', left_side)
-        print('bottom_side: ', bottom_side)
-        print('diagonal_side: ', diagonal_side)
+        # print('current: ', current)
+        # print('left_side: ', left_side)
+        # print('bottom_side: ', bottom_side)
+        # print('diagonal_side: ', diagonal_side)
+
+        if current == 1 and bottom_side == 0:
+            backtrack.append('d')
+            y = y - 1
 
         if left_side == bottom_side:
             if current == diagonal_side:
                 backtrack.append(' ')
-            elif current == diagonal_side + 2:
+            elif current == diagonal_side + cost:
                 backtrack.append('s')
-            else:
-                print('error 1')
             # Move Diagonally
             x = x - 1
             y = y - 1
         else:
-            if left_side + 1 == current and diagonal_side + 2 != current and bottom_side + 1 != current:
-                backtrack.append('i')
-                x = x - 1
+            if current == diagonal_side:
+                lowest_value = min(diagonal_side + cost, left_side + 1)
+                if lowest_value == left_side + 1 and first[x - 1] != second[y - 1]:
+                    backtrack.append('i')
+                    x = x - 1
+                else:
+                    backtrack.append(' ')
+                    x = x - 1
+                    y = y - 1
 
-            # TODO: How to go diagonal when
-            #   current:  5
-            #   left_side:  4
-            #   bottom_side:  6
-            #   diagonal_side:  5?
-            # elif left_side + 1 == current and diagonal_side == current and bottom_side + 1 != current:
-            elif current == diagonal_side and left_side + 1 == current:
-                backtrack.append(' ')
-                x = x - 1
-                y = y - 1
-            elif bottom_side == 0 or left_side == 0:
-                backtrack.append('d')
-                y = y - 1
-            else:
-                print('error 2')
-        print('backtrack: ', backtrack)
+        # print('backtrack: ', backtrack)
 
     return backtrack
 
@@ -191,7 +173,9 @@ if __name__ == '__main__':
     # text4 = regexQuestionThird('...')
     # print(text4)
 
-    med, matrix2 = edit_distance("execution", "intention")
+    first = 'execution'
+    second = 'intention'
+    med, matrix2 = edit_distance(first, second)
     print(med)
-    result = backtrace(matrix2)
+    result = backtrace(matrix2, first, second)
     print(result)
