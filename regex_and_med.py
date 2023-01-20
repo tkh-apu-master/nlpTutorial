@@ -55,6 +55,7 @@ def backtrace(matrix):
         # print('bottom_side: ', bottom_side)
         # print('diagonal_side: ', diagonal_side)
 
+        # TODO: If there's no operation, we still have to move the cursor.
         if current == 1 and bottom_side == 0:
             backtrack.append('d')
             y = y - 1
@@ -77,7 +78,9 @@ def backtrace(matrix):
                     backtrack.append(' ')
                     x = x - 1
                     y = y - 1
+                # If move down, is deletion
 
+        # TODO:
         # print('backtrack: ', backtrack)
 
     return backtrack
@@ -97,7 +100,7 @@ def regex_question_one(date_string):
     # Reference: https://stackoverflow.com/a/2841557
     # \d is a digit
     # + means one or more times
-    # d+ means 1 or more digits
+    # \d+ means 1 or more digits
     return [int(n) for n in re.findall('\d+', date_string)]
 
 
@@ -138,6 +141,7 @@ def regex_question_third(text):
     pattern = re.compile(r'[eiols]|\.')
 
     # converts all the letters
+    # TODO: use .sub(...)
     for w in text:
         if re.search(pattern, w):
             if w == 'e':
